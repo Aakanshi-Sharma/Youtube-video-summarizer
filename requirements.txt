@@ -1,3 +1,5 @@
 streamlit
 google-generativeai
-dotenv
+python-dotenv
+pathlib
+youtube_transcript_api
