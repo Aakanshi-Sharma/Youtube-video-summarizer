@@ -2,6 +2,7 @@ import streamlit as st
 from dotenv import load_dotenv
 import google.generativeai as genai
 import os
+from youtube_transcript_api import YouTubeTranscriptApi
 
 # --------------Utils-------------------
 load_dotenv()
@@ -25,3 +26,4 @@ within 250 words. The transcript text will be appended here :
 
 st.set_page_config(page_title="Youtube Video Summarizer")
 st.header("Youtube Video Transcript Summarizer")
+link=st.text_input("Enter the link")
