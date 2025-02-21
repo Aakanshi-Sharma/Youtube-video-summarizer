@@ -16,6 +16,18 @@ def generate_gemini_content(transcript_text, prompt):
     return response.text
 
 
+def extract_transcript_url(youtube_url):
+    try:
+        video_id = youtube_url.split("=")[-1]
+        transcript = YouTubeTranscriptApi.get_transcript(video_id)
+        text = ""
+        for i in transcript:
+            text += " " + i["text"]
+        return text
+    except Exception as e:
+        raise e
+
+
 prompt = """
 You are youtube video summarizer. You will be taking the transcript text
 and summarizing the entire video and providing the important summary in points
@@ -26,4 +38,4 @@ within 250 words. The transcript text will be appended here :
 
 st.set_page_config(page_title="Youtube Video Summarizer")
 st.header("Youtube Video Transcript Summarizer")
-link=st.text_input("Enter the link")
+link = st.text_input("Enter the link")
