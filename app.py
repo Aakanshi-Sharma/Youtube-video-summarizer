@@ -38,13 +38,14 @@ within 250 words.Provide the summary of the text given here :
 
 st.set_page_config(page_title="Youtube Video Summarizer")
 st.header("Youtube Video Transcript Summarizer")
-link = st.text_input("Enter the link")
+link = st.text_input("Enter the youtube video link whose transcript is enabled.")
 if link:
     video_id = link.split("=")[-1]
     st.image(f"http://img.youtube.com/vi/{video_id}/0.jpg", use_container_width=True)
 submit_button = st.button("Summarize")
 if submit_button:
-    extracted_text = extract_transcript_url(link)
-    if extracted_text:
-        result = generate_gemini_content(extracted_text, prompt)
-        st.write(result)
+    with st.spinner("Loading..."):
+        extracted_text = extract_transcript_url(link)
+        if extracted_text:
+            result = generate_gemini_content(extracted_text, prompt)
+            st.write(result)
